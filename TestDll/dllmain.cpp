@@ -45,7 +45,7 @@ int injectThread(DWORD pid, DWORD tid)
 	ResumeThread(hThread);
 
 	WaitForSingleObject(hEvent,INFINITE);//等待dll代码执行完毕 回收分配的内存
-	VirtualFree(pBuffer,0,MEM_RELEASE);
+	VirtualFreeEx(hProcess,pBuffer,0,MEM_RELEASE);
 	CloseHandle(hEvent);
 	return 0;
 }
